@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  macOS launchd plist for the Telegram Monitor script.
+
+  Install:
+      cp com.user.telegram-monitor.plist ~/Library/LaunchAgents/
+      launchctl load ~/Library/LaunchAgents/com.user.telegram-monitor.plist
+
+  Uninstall:
+      launchctl unload ~/Library/LaunchAgents/com.user.telegram-monitor.plist
+      rm ~/Library/LaunchAgents/com.user.telegram-monitor.plist
+
+  Check status:
+      launchctl list | grep telegram
+
+  View live logs:
+      tail -f /Users/kashishchoudhary/Desktop/MONITORING/monitor.log
+-->
+<plist version="1.0">
+<dict>
+    <!-- Unique label for this job -->
+    <key>Label</key>
+    <string>com.user.telegram-monitor</string>
+
+    <!-- Command to run: venv python + script path -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/kashishchoudhary/Desktop/MONITORING/venv/bin/python</string>
+        <string>/Users/kashishchoudhary/Desktop/MONITORING/main.py</string>
+    </array>
+
+    <!-- Working directory (so .env and session file resolve correctly) -->
+    <key>WorkingDirectory</key>
+    <string>/Users/kashishchoudhary/Desktop/MONITORING</string>
+
+    <!-- Restart automatically if the process exits for any reason -->
+    <key>KeepAlive</key>
+    <true/>
+
+    <!-- Throttle rapid restart loops: wait 30s before re-launching -->
+    <key>ThrottleInterval</key>
+    <integer>30</integer>
+
+    <!-- Start when the user logs in -->
+    <key>RunAtLoad</key>
+    <true/>
+
+    <!-- Redirect stdout/stderr to the same rotating log the script writes to.
+         The script's RotatingFileHandler already manages rotation;
+         these capture any startup-phase output before logging is initialised. -->
+    <key>StandardOutPath</key>
+    <string>/Users/kashishchoudhary/Desktop/MONITORING/monitor.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/kashishchoudhary/Desktop/MONITORING/monitor.log</string>
+
+    <!-- Ensure the PATH includes Homebrew so Telethon SSL libs are found -->
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin</string>
+    </dict>
+</dict>
+</plist>

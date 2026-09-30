@@ -1,0 +1,23 @@
+# Secrets — never commit these
+.env
+*.session
+*.session-journal
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+venv/
+.venv/
+
+# Logs
+monitor.log
+monitor.log.*
+
+# macOS
+.DS_Store
+.env
+*.session
+__pycache__/
