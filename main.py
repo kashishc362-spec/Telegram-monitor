@@ -80,10 +80,11 @@ def _sanitize_session_string(raw: str) -> str:
     #    Telethon uses URL-safe base64 which replaces + with - and / with _
     cleaned = re.sub(r"[^A-Za-z0-9+/=\-_]", "", cleaned)
 
-    # 4. Re-add missing padding so len(cleaned) is a multiple of 4
-    remainder = len(cleaned) % 4
-    if remainder:
-        cleaned += "=" * (4 - remainder)
+    # 4. Re-add missing padding so len(cleaned) is a multiple of 4.
+    #    ((4 - padding) % 4) evaluates to 0 when already aligned, so no
+    #    conditional branch is needed and over-padding is impossible.
+    padding = len(cleaned) % 4
+    cleaned += "=" * ((4 - padding) % 4)
 
     return cleaned
 
