@@ -1,23 +1,51 @@
-# Secrets — never commit these
+# ── Secrets — NEVER commit these ─────────────────────────────────────────────
 .env
+example.env
+
+# ── Telethon session files ────────────────────────────────────────────────────
 *.session
 *.session-journal
 
-# Python artifacts
+# ── Runtime logs ─────────────────────────────────────────────────────────────
+monitor.log
+monitor.log.*
+monitoring.log
+monitoring.log.*
+*.log
+
+# ── Python build artifacts ────────────────────────────────────────────────────
 __pycache__/
 *.py[cod]
 *.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
 
-# Virtual environment
+# ── Virtual environments ──────────────────────────────────────────────────────
 venv/
 .venv/
+env/
+.env.bak
 
-# Logs
-monitor.log
-monitor.log.*
-
-# macOS
+# ── macOS ─────────────────────────────────────────────────────────────────────
 .DS_Store
-.env
-*.session
-__pycache__/
+.AppleDouble
+.LSOverride
+
+# ── IDEs and editors ──────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ── Misc ──────────────────────────────────────────────────────────────────────
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
