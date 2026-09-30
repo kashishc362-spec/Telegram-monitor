@@ -54,6 +54,40 @@ def _parse_chat(val: str) -> "int | str":
         return val.strip()
 
 
+def _sanitize_session_string(raw: str) -> str:
+    """
+    Normalize a SESSION_STRING that may have been mangled during copy-paste
+    into a cloud dashboard (Railway, Heroku, Docker secrets, etc.).
+
+    Handles:
+    - Leading / trailing whitespace and accidental surrounding quotes (' or ")
+    - Internal whitespace, spaces, tabs, newlines (\\n) and carriage returns
+      (\\r) introduced when a long string wraps across lines in a web UI
+    - Missing base64 padding ('=' characters) caused by truncation or
+      dashboard stripping of trailing equals signs
+    - Any non-base64 characters that sneak in (zero-width spaces, BOM, etc.)
+    """
+    if not raw:
+        return raw
+
+    # 1. Strip outer whitespace then surrounding quote characters
+    cleaned = raw.strip().strip("\"'")
+
+    # 2. Remove ALL internal whitespace (covers every Unicode whitespace class)
+    cleaned = re.sub(r"\s+", "", cleaned)
+
+    # 3. Drop any character that is not valid base64 (A-Z a-z 0-9 + / = -)
+    #    Telethon uses URL-safe base64 which replaces + with - and / with _
+    cleaned = re.sub(r"[^A-Za-z0-9+/=\-_]", "", cleaned)
+
+    # 4. Re-add missing padding so len(cleaned) is a multiple of 4
+    remainder = len(cleaned) % 4
+    if remainder:
+        cleaned += "=" * (4 - remainder)
+
+    return cleaned
+
+
 # ── Config dataclass ──────────────────────────────────────────────────────────
 
 @dataclass
@@ -72,7 +106,7 @@ class Config:
     def from_env(cls) -> "Config":
         api_id_raw     = os.getenv("API_ID", "").strip()
         api_hash       = os.getenv("API_HASH", "").strip()
-        session_string = os.getenv("SESSION_STRING", "").strip()
+        session_string = _sanitize_session_string(os.getenv("SESSION_STRING", ""))
         bot_token      = os.getenv("BOT_TOKEN", "").strip()
         alert_chat     = os.getenv("ALERT_CHAT_ID", "").strip()
 

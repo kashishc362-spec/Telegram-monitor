@@ -2,3 +2,4 @@
 2026-09-29 18:22:19,376 [INFO] monitor: Connecting to Telegram (attempt 1)…
 2026-09-29 18:22:19,973 [INFO] monitor: Connected. Monitoring all group(s), 202 keyword(s).
 2026-09-29 20:51:20,813 [WARNING] telethon.network.connection.connection: Server closed the connection: [Errno 49] Can't assign requested address
+2026-09-30 12:39:46,395 [WARNING] telethon.network.connection.connection: Server closed the connection: [Errno 54] Connection reset by peer
