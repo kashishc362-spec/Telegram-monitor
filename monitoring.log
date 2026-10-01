@@ -3,3 +3,78 @@
 2026-09-29 18:22:19,973 [INFO] monitor: Connected. Monitoring all group(s), 202 keyword(s).
 2026-09-29 20:51:20,813 [WARNING] telethon.network.connection.connection: Server closed the connection: [Errno 49] Can't assign requested address
 2026-09-30 12:39:46,395 [WARNING] telethon.network.connection.connection: Server closed the connection: [Errno 54] Connection reset by peer
+2026-09-30 20:53:29,719 [WARNING] telethon.network.connection.connection: Server closed the connection: [Errno 49] Can't assign requested address
+2026-09-30 20:53:29,735 [WARNING] telethon.network.mtprotosender: Attempt 1 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-09-30 20:53:30,740 [WARNING] telethon.network.mtprotosender: Attempt 2 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-09-30 20:53:31,742 [WARNING] telethon.network.mtprotosender: Attempt 3 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-09-30 20:53:32,745 [WARNING] telethon.network.mtprotosender: Attempt 4 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-09-30 20:53:33,748 [WARNING] telethon.network.mtprotosender: Attempt 5 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-09-30 20:53:34,751 [WARNING] telethon.network.mtprotosender: Attempt 6 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-09-30 20:53:36,757 [WARNING] telethon.network.mtprotosender: Attempt 1 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-09-30 20:53:37,760 [WARNING] telethon.network.mtprotosender: Attempt 2 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-09-30 20:53:38,762 [WARNING] telethon.network.mtprotosender: Attempt 3 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-09-30 20:53:39,765 [WARNING] telethon.network.mtprotosender: Attempt 4 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-09-30 20:53:40,766 [WARNING] telethon.network.mtprotosender: Attempt 5 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-09-30 20:53:41,769 [WARNING] telethon.network.mtprotosender: Attempt 6 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-09-30 20:53:43,772 [WARNING] telethon.network.mtprotosender: Attempt 1 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-09-30 20:53:44,776 [WARNING] telethon.network.mtprotosender: Attempt 2 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-09-30 20:53:45,779 [WARNING] telethon.network.mtprotosender: Attempt 3 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-09-30 20:53:46,783 [WARNING] telethon.network.mtprotosender: Attempt 4 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-09-30 20:53:47,785 [WARNING] telethon.network.mtprotosender: Attempt 5 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 01:33:46,158 [WARNING] telethon.network.connection.connection: Server closed the connection: [Errno 54] Connection reset by peer
+2026-10-01 01:33:47,049 [WARNING] telethon.network.mtprotostate: Server resent the older message 7691421537963406337, ignoring
+2026-10-01 02:21:29,617 [WARNING] telethon.network.connection.connection: Server closed the connection: [Errno 54] Connection reset by peer
+2026-10-01 02:21:30,328 [WARNING] telethon.network.mtprotostate: Server resent the older message 7691433836034300929, ignoring
+2026-10-01 03:20:20,584 [WARNING] telethon.network.connection.connection: Server closed the connection: [Errno 54] Connection reset by peer
+2026-10-01 04:37:25,903 [WARNING] telethon.network.connection.connection: Server closed the connection: [Errno 54] Connection reset by peer
+2026-10-01 05:38:25,321 [WARNING] telethon.network.connection.connection: Server closed the connection: [Errno 54] Connection reset by peer
+2026-10-01 06:39:24,567 [WARNING] telethon.network.connection.connection: Server closed the connection: [Errno 54] Connection reset by peer
+2026-10-01 07:40:23,755 [WARNING] telethon.network.connection.connection: Server closed the connection: [Errno 54] Connection reset by peer
+2026-10-01 07:40:24,472 [WARNING] telethon.network.mtprotostate: Server resent the older message 7691516016305625089, ignoring
+2026-10-01 08:41:22,621 [WARNING] telethon.network.connection.connection: Server closed the connection: [Errno 54] Connection reset by peer
+2026-10-01 08:41:23,355 [WARNING] telethon.network.mtprotostate: Server resent the older message 7691531730823642113, ignoring
+2026-10-01 09:41:58,010 [WARNING] telethon.network.mtprotostate: Server resent the older message 7691547342234109953, ignoring
+2026-10-01 11:15:04,038 [WARNING] telethon.network.connection.connection: Server closed the connection: [Errno 54] Connection reset by peer
+2026-10-01 11:27:58,666 [WARNING] telethon.network.mtprotosender: Attempt 1 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 11:27:59,668 [WARNING] telethon.network.mtprotosender: Attempt 2 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 11:28:00,669 [WARNING] telethon.network.mtprotosender: Attempt 3 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 11:28:01,671 [WARNING] telethon.network.mtprotosender: Attempt 4 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 11:28:02,672 [WARNING] telethon.network.mtprotosender: Attempt 5 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 11:28:03,674 [WARNING] telethon.network.mtprotosender: Attempt 6 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 11:28:05,677 [WARNING] telethon.network.mtprotosender: Attempt 1 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 11:28:06,678 [WARNING] telethon.network.mtprotosender: Attempt 2 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 11:28:07,680 [WARNING] telethon.network.mtprotosender: Attempt 3 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 11:28:08,682 [WARNING] telethon.network.mtprotosender: Attempt 4 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 11:28:09,683 [WARNING] telethon.network.mtprotosender: Attempt 5 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 11:28:10,684 [WARNING] telethon.network.mtprotosender: Attempt 6 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 11:28:12,687 [WARNING] telethon.network.mtprotosender: Attempt 1 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 11:28:13,689 [WARNING] telethon.network.mtprotosender: Attempt 2 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 11:28:14,691 [WARNING] telethon.network.mtprotosender: Attempt 3 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 11:28:15,693 [WARNING] telethon.network.mtprotosender: Attempt 4 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 11:28:16,695 [WARNING] telethon.network.mtprotosender: Attempt 5 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 11:28:17,699 [WARNING] telethon.network.mtprotosender: Attempt 6 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 11:28:19,702 [WARNING] telethon.network.mtprotosender: Attempt 1 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 11:28:20,705 [WARNING] telethon.network.mtprotosender: Attempt 2 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 11:28:21,707 [WARNING] telethon.network.mtprotosender: Attempt 3 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 11:28:22,709 [WARNING] telethon.network.mtprotosender: Attempt 4 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 11:28:23,710 [WARNING] telethon.network.mtprotosender: Attempt 5 at connecting failed: ConnectionRefusedError: [Errno 61] Connect call failed ('91.108.56.144', 443)
+2026-10-01 11:28:24,712 [WARNING] telethon.network.mtprotosender: Attempt 6 at connecting failed: OSError: [Errno 65] No route to host
+2026-10-01 11:28:26,715 [WARNING] telethon.network.mtprotosender: Attempt 1 at connecting failed: OSError: [Errno 65] No route to host
+2026-10-01 11:28:27,717 [WARNING] telethon.network.mtprotosender: Attempt 2 at connecting failed: OSError: [Errno 65] No route to host
+2026-10-01 11:28:28,719 [WARNING] telethon.network.mtprotosender: Attempt 3 at connecting failed: OSError: [Errno 65] No route to host
+2026-10-01 11:28:29,720 [WARNING] telethon.network.mtprotosender: Attempt 4 at connecting failed: OSError: [Errno 65] No route to host
+2026-10-01 11:28:30,722 [WARNING] telethon.network.mtprotosender: Attempt 5 at connecting failed: OSError: [Errno 65] No route to host
+2026-10-01 11:28:31,723 [WARNING] telethon.network.mtprotosender: Attempt 6 at connecting failed: OSError: [Errno 65] No route to host
+2026-10-01 11:28:33,725 [ERROR] telethon.network.mtprotosender: Automatic reconnection failed 5 time(s)
+2026-10-01 11:28:33,727 [ERROR] asyncio: Future exception was never retrieved
+future: <Future finished exception=ConnectionError('Connection to Telegram failed 5 time(s)')>
+ConnectionError: Connection to Telegram failed 5 time(s)
+2026-10-01 11:28:33,743 [WARNING] monitor: Network error (Connection to Telegram failed 5 time(s)). Retry 1/10 in 5s…
+2026-10-01 11:28:38,760 [INFO] monitor: Connecting to Telegram (attempt 2)…
+2026-10-01 11:28:38,762 [WARNING] telethon.network.mtprotosender: Attempt 1 at connecting failed: OSError: [Errno 65] No route to host
+2026-10-01 11:28:39,763 [WARNING] telethon.network.mtprotosender: Attempt 2 at connecting failed: OSError: [Errno 65] No route to host
+2026-10-01 11:28:40,764 [WARNING] telethon.network.mtprotosender: Attempt 3 at connecting failed: OSError: [Errno 65] No route to host
+2026-10-01 11:28:41,766 [WARNING] telethon.network.mtprotosender: Attempt 4 at connecting failed: OSError: [Errno 65] No route to host
+2026-10-01 11:28:42,767 [WARNING] telethon.network.mtprotosender: Attempt 5 at connecting failed: OSError: [Errno 65] No route to host
+2026-10-01 11:28:43,768 [WARNING] telethon.network.mtprotosender: Attempt 6 at connecting failed: OSError: [Errno 65] No route to host
+2026-10-01 11:28:44,769 [WARNING] monitor: Network error (Connection to Telegram failed 5 time(s)). Retry 2/10 in 10s…

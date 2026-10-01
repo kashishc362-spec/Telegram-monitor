@@ -61,11 +61,20 @@ def _sanitize_session_string(raw: str) -> str:
 
     Handles:
     - Leading / trailing whitespace and accidental surrounding quotes (' or ")
-    - Internal whitespace, spaces, tabs, newlines (\\n) and carriage returns
-      (\\r) introduced when a long string wraps across lines in a web UI
-    - Missing base64 padding ('=' characters) caused by truncation or
-      dashboard stripping of trailing equals signs
+    - Internal whitespace, spaces, tabs, newlines introduced when a long string
+      wraps across lines in a web UI
+    - Extra or missing '=' padding (e.g. '====' instead of '=', or no padding
+      at all) — see note below
     - Any non-base64 characters that sneak in (zero-width spaces, BOM, etc.)
+
+    NOTE on '=' stripping: Telethon's StringSession uses the DATA length (chars
+    excluding padding) to pick IPv4 vs IPv6:
+        len(string[1:]) == 352  →  IPv4  (263 decoded bytes)
+        len(string[1:]) != 352  →  IPv6  (275 decoded bytes)
+    If we leave stray '=' chars inside the string they inflate len() and cause
+    Telethon to pick the wrong IP family, triggering:
+        struct.error: unpack requires a buffer of 275 bytes
+    The fix is to strip ALL '=' before recalculating the correct padding.
     """
     if not raw:
         return raw
@@ -76,17 +85,84 @@ def _sanitize_session_string(raw: str) -> str:
     # 2. Remove ALL internal whitespace (covers every Unicode whitespace class)
     cleaned = re.sub(r"\s+", "", cleaned)
 
-    # 3. Drop any character that is not valid base64 (A-Z a-z 0-9 + / = -)
-    #    Telethon uses URL-safe base64 which replaces + with - and / with _
-    cleaned = re.sub(r"[^A-Za-z0-9+/=\-_]", "", cleaned)
+    # 3. Drop any character that is not a valid URL-safe base64 char.
+    #    Critically, '=' is NOT preserved here — we strip all existing padding
+    #    so we can recompute it correctly in step 4.
+    cleaned = re.sub(r"[^A-Za-z0-9\-_]", "", cleaned)
 
-    # 4. Re-add missing padding so len(cleaned) is a multiple of 4.
-    #    ((4 - padding) % 4) evaluates to 0 when already aligned, so no
-    #    conditional branch is needed and over-padding is impossible.
-    padding = len(cleaned) % 4
-    cleaned += "=" * ((4 - padding) % 4)
+    # 4. Re-add exactly the right amount of '=' padding — but ONLY to the base64
+    #    DATA section, not the full string.  Telethon's StringSession prefixes the
+    #    base64 payload with a one-character version byte ('1') that is NOT part
+    #    of the base64 encoding.  If we pad based on len(full_string) we include
+    #    that byte in the length, making the data section one character short and
+    #    causing:
+    #        struct.error: unpack requires a buffer of 275 bytes
+    #    The fix: detect the version byte, pad only the part after it, then
+    #    reassemble.
+    if len(cleaned) > 1 and cleaned[0] == "1":
+        version, data = cleaned[0], cleaned[1:]
+        data   += "=" * ((4 - len(data) % 4) % 4)
+        cleaned = version + data
+    else:
+        cleaned += "=" * ((4 - len(cleaned) % 4) % 4)
 
     return cleaned
+
+
+# Telethon StringSession sizes (bytes after base64-decoding, including the
+# 1-byte version prefix).  Used by the validator below.
+_SESSION_SIZES = {352: ("IPv4", 263), 368: ("IPv6", 275)}
+
+
+def _validate_session_string(session: str) -> "str | None":
+    """
+    Return an error message if the session string will make Telethon crash,
+    or None if it looks valid.
+
+    Checks:
+    1. The string starts with Telethon's version byte ('1').
+    2. After stripping the version byte, the remaining length is exactly
+       352 (IPv4) or 368 (IPv6) characters — the two values Telethon uses
+       to decide which struct format to unpack.
+    3. base64-decoding the data section yields the expected byte count.
+    """
+    import base64
+
+    if not session:
+        return None  # empty is handled by the first-run flow
+
+    if session[0] != "1":
+        return (
+            f"SESSION_STRING must start with version byte '1', "
+            f"got {session[0]!r}. The string may be corrupted or truncated."
+        )
+
+    data_part = session[1:]
+    data_len  = len(data_part)
+
+    if data_len not in _SESSION_SIZES:
+        expected = " or ".join(str(k) for k in _SESSION_SIZES)
+        return (
+            f"SESSION_STRING data section is {data_len} chars; "
+            f"Telethon expects {expected} (IPv4 or IPv6). "
+            f"The string may have extra or missing characters. "
+            f"Regenerate it with: python generate_session.py"
+        )
+
+    ip_label, expected_bytes = _SESSION_SIZES[data_len]
+    try:
+        decoded = base64.urlsafe_b64decode(data_part)
+    except Exception as exc:
+        return f"SESSION_STRING is not valid base64: {exc}"
+
+    if len(decoded) != expected_bytes:
+        return (
+            f"SESSION_STRING decoded to {len(decoded)} bytes "
+            f"(expected {expected_bytes} for {ip_label}). "
+            f"Regenerate it with: python generate_session.py"
+        )
+
+    return None
 
 
 # ── Config dataclass ──────────────────────────────────────────────────────────
@@ -117,6 +193,10 @@ class Config:
             api_id = int(api_id_raw)
         except ValueError:
             raise ValueError(f"API_ID must be a valid integer, got: {api_id_raw!r}")
+
+        session_err = _validate_session_string(session_string)
+        if session_err:
+            raise ValueError(f"SESSION_STRING is invalid: {session_err}")
 
         source_raw   = os.getenv("SOURCE_GROUPS", "")
         keywords_raw = os.getenv("KEYWORDS", "")
